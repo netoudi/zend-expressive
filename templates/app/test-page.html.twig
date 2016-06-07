@@ -6,4 +6,10 @@
 
     <h1>{{ data }}</h1>
 
+    <hr>
+
+    {% for category in categories %}
+        {{ category.id }} - {{ category.name }}<br>
+    {% endfor %}
+
 {% endblock %}
