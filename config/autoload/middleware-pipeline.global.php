@@ -1,4 +1,5 @@
 <?php
+
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
 
@@ -7,6 +8,7 @@ return [
         'factories' => [
             Helper\ServerUrlMiddleware::class => Helper\ServerUrlMiddlewareFactory::class,
             Helper\UrlHelperMiddleware::class => Helper\UrlHelperMiddlewareFactory::class,
+            CodeEmailMKT\Action\BootstrapAction::class => CodeEmailMKT\Action\BootstrapActionFactory::class
         ],
     ],
     // This can be used to seed pre- and/or post-routing middleware
@@ -40,6 +42,7 @@ return [
                 // - pre-conditions
                 // - modifications to outgoing responses
                 Helper\ServerUrlMiddleware::class,
+                CodeEmailMKT\Action\BootstrapAction::class,
             ],
             'priority' => 10000,
         ],
@@ -62,7 +65,7 @@ return [
             'middleware' => [
                 // Add error middleware here.
             ],
-            'error'    => true,
+            'error' => true,
             'priority' => -10000,
         ],
     ],
