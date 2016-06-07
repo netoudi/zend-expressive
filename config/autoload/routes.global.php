@@ -8,6 +8,7 @@ return [
         ],
         'factories' => [
             App\Action\HomePageAction::class => App\Action\HomePageFactory::class,
+            App\Action\TestPageAction::class => App\Action\TestPageFactory::class,
         ],
     ],
 
@@ -22,6 +23,12 @@ return [
             'name' => 'api.ping',
             'path' => '/api/ping',
             'middleware' => App\Action\PingAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'teste',
+            'path' => '/teste',
+            'middleware' => App\Action\TestPageAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],
