@@ -8,8 +8,21 @@
 
     <hr>
 
+    <h2>All Categories</h2>
     {% for category in categories %}
         {{ category.id }} - {{ category.name }}<br>
+    {% endfor %}
+
+    <h2>All Clients</h2>
+    {% for client in clients %}
+        <blockquote>
+            <h4>#{{ "%02d"| format(client.id) }} - {{ client.name | upper }}</h4>
+            E-mail: {{ client.email }}<br>
+            CPF: {{ client.cpf }}<br>
+            {% for address in client.address %}
+                Address {{ loop.index }}: {{ address.street }}, {{ address.city }}, {{ address.state }} {{ address.zipCode }}<br>
+            {% endfor %}
+        </blockquote>
     {% endfor %}
 
 {% endblock %}
