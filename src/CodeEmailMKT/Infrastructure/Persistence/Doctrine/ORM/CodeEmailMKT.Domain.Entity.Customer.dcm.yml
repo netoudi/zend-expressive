@@ -1,0 +1,17 @@
+#CodeEmailMKT.Domain.Entity.Customer.dcm.yml
+CodeEmailMKT\Domain\Entity\Customer:
+  type: entity
+  table: customers
+  id:
+    id:
+      type: integer
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+      mullable: true
+    email:
+      type: string
+      length: 255

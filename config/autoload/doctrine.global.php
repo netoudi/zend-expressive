@@ -19,10 +19,10 @@ return [
         ],
         'driver' => [
             'CodeEmailMKT_driver' => [
-                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'class' => 'Doctrine\ORM\Mapping\Driver\YamlDriver',
                 'cache' => 'array',
                 'paths' => [
-                    __DIR__ . '/../../src/CodeEmailMKT/Domain/Entity'
+                    __DIR__ . '/../../src/CodeEmailMKT/Infrastructure/Persistence/Doctrine/ORM'
                 ]
             ],
             'orm_default' => [
