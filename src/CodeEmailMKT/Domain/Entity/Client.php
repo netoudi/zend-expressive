@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeEmailMKT\Entity;
+namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -34,7 +34,7 @@ class Client
     protected $cpf;
 
     /**
-     * @ORM\OneToMany(targetEntity="CodeEmailMKT\Entity\Address", mappedBy="client", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="CodeEmailMKT\Domain\Entity\Address", mappedBy="client", cascade={"persist", "remove"})
      */
     protected $address;
 

@@ -22,12 +22,12 @@ return [
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                 'cache' => 'array',
                 'paths' => [
-                    __DIR__ . '/../../src/CodeEmailMKT/Entity'
+                    __DIR__ . '/../../src/CodeEmailMKT/Domain/Entity'
                 ]
             ],
             'orm_default' => [
                 'drivers' => [
-                    'CodeEmailMKT\Entity' => 'CodeEmailMKT_driver'
+                    'CodeEmailMKT\Domain\Entity' => 'CodeEmailMKT_driver'
                 ]
             ]
         ]

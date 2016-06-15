@@ -2,7 +2,7 @@
 
 namespace AppTest\Action;
 
-use CodeEmailMKT\Action\HomePageAction;
+use CodeEmailMKT\Application\Action\HomePageAction;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Zend\Expressive\Router\RouterInterface;

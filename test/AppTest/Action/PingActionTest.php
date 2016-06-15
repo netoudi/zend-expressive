@@ -2,7 +2,7 @@
 
 namespace AppTest\Action;
 
-use CodeEmailMKT\Action\PingAction;
+use CodeEmailMKT\Application\Action\PingAction;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 

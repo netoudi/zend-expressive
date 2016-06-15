@@ -2,8 +2,8 @@
 
 namespace AppTest\Action;
 
-use CodeEmailMKT\Action\HomePageAction;
-use CodeEmailMKT\Action\HomePageFactory;
+use CodeEmailMKT\Application\Action\HomePageAction;
+use CodeEmailMKT\Application\Action\HomePageFactory;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template\TemplateRendererInterface;

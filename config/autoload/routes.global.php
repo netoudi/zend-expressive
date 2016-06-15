@@ -4,11 +4,11 @@ return [
     'dependencies' => [
         'invokables' => [
             Zend\Expressive\Router\RouterInterface::class => Zend\Expressive\Router\AuraRouter::class,
-            CodeEmailMKT\Action\PingAction::class => CodeEmailMKT\Action\PingAction::class,
+            CodeEmailMKT\Application\Action\PingAction::class => CodeEmailMKT\Application\Action\PingAction::class,
         ],
         'factories' => [
-            CodeEmailMKT\Action\HomePageAction::class => CodeEmailMKT\Action\HomePageFactory::class,
-            CodeEmailMKT\Action\TestPageAction::class => CodeEmailMKT\Action\TestPageFactory::class,
+            CodeEmailMKT\Application\Action\HomePageAction::class => CodeEmailMKT\Application\Action\HomePageFactory::class,
+            CodeEmailMKT\Application\Action\TestPageAction::class => CodeEmailMKT\Application\Action\TestPageFactory::class,
         ],
     ],
 
@@ -16,19 +16,19 @@ return [
         [
             'name' => 'home',
             'path' => '/',
-            'middleware' => CodeEmailMKT\Action\HomePageAction::class,
+            'middleware' => CodeEmailMKT\Application\Action\HomePageAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
             'name' => 'api.ping',
             'path' => '/api/ping',
-            'middleware' => CodeEmailMKT\Action\PingAction::class,
+            'middleware' => CodeEmailMKT\Application\Action\PingAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
             'name' => 'teste',
             'path' => '/teste',
-            'middleware' => CodeEmailMKT\Action\TestPageAction::class,
+            'middleware' => CodeEmailMKT\Application\Action\TestPageAction::class,
             'allowed_methods' => ['GET'],
         ],
     ],

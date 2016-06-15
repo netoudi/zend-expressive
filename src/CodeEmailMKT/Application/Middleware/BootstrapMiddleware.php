@@ -1,12 +1,12 @@
 <?php
 
-namespace CodeEmailMKT\Action;
+namespace CodeEmailMKT\Application\Middleware;
 
-use CodeEmailMKT\Service\BootstrapInterface;
+use CodeEmailMKT\Domain\Service\BootstrapInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class BootstrapAction
+class BootstrapMiddleware
 {
     /**
      * @var BootstrapInterface

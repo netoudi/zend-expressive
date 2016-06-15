@@ -1,10 +1,10 @@
 <?php
 
-namespace CodeEmailMKT\Action;
+namespace CodeEmailMKT\Application\Action;
 
-use CodeEmailMKT\Entity\Address;
-use CodeEmailMKT\Entity\Category;
-use CodeEmailMKT\Entity\Client;
+use CodeEmailMKT\Domain\Entity\Address;
+use CodeEmailMKT\Domain\Entity\Category;
+use CodeEmailMKT\Domain\Entity\Client;
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
 use Psr\Http\Message\ResponseInterface;

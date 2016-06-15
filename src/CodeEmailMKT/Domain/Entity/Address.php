@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeEmailMKT\Entity;
+namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,7 +38,7 @@ class Address
     protected $state;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CodeEmailMKT\Entity\Client", inversedBy="address")
+     * @ORM\ManyToOne(targetEntity="CodeEmailMKT\Domain\Entity\Client", inversedBy="address")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     protected $client;
