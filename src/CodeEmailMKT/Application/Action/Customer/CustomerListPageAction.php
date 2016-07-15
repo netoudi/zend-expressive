@@ -40,6 +40,8 @@ class CustomerListPageAction
     {
         $customers = $this->repository->findAll();
 
+        echo $request->getAttribute('flash')->getMessage('success');
+
         return new HtmlResponse($this->template->render('app::customer/list', ['customers' => $customers]));
     }
 }
