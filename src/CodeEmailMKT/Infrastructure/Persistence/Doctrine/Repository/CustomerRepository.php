@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityRepository;
 
 class CustomerRepository extends EntityRepository implements CustomerRepositoryInterface
 {
-
     public function create($entity)
     {
         $this->getEntityManager()->persist($entity);
@@ -32,6 +31,6 @@ class CustomerRepository extends EntityRepository implements CustomerRepositoryI
 
     public function findAll()
     {
-        // TODO: Implement remove() method.
+        return parent::findAll();
     }
 }

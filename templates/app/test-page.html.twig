@@ -25,4 +25,9 @@
         </blockquote>
     {% endfor %}
 
+    <h2>All Customers</h2>
+    {% for customer in customers %}
+        {{ customer.id }} - {{ customer.name }}<br>
+    {% endfor %}
+
 {% endblock %}

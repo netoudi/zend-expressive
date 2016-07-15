@@ -80,6 +80,17 @@ class TestPageAction
         $clients = $this->manager->getRepository(Client::class)->findAll();
 
         return new HtmlResponse($this->template->render('app::test-page', ['data' => 'Minha primeira aplicação!', 'categories' => $categories, 'clients' => $clients]));*/
-        return new HtmlResponse($this->template->render('app::test-page', ['data' => 'Minha primeira aplicação!', 'categories' => [], 'clients' => []]));
+
+        $customers = $this->repository->findAll();
+
+        return new HtmlResponse(
+            $this->template->render('app::test-page', [
+                    'data' => 'Minha primeira aplicação!',
+                    'categories' => [],
+                    'clients' => [],
+                    'customers' => $customers,
+                ]
+            )
+        );
     }
 }
