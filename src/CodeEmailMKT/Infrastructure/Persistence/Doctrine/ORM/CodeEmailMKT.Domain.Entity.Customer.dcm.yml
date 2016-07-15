@@ -1,6 +1,7 @@
 #CodeEmailMKT.Domain.Entity.Customer.dcm.yml
 CodeEmailMKT\Domain\Entity\Customer:
   type: entity
+  repositoryClass: \CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CustomerRepository
   table: customers
   id:
     id:

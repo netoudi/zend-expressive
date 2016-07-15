@@ -5,8 +5,8 @@ namespace CodeEmailMKT\Application\Action;
 use CodeEmailMKT\Domain\Entity\Address;
 use CodeEmailMKT\Domain\Entity\Category;
 use CodeEmailMKT\Domain\Entity\Client;
-use Doctrine\Common\EventManager;
-use Doctrine\ORM\EntityManager;
+use CodeEmailMKT\Domain\Entity\Customer;
+use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
@@ -15,23 +15,34 @@ use Zend\Expressive\Template;
 class TestPageAction
 {
     /**
-     * @var EventManager
-     */
-    private $manager;
-    /**
      * @var Template\TemplateRendererInterface
      */
     private $template;
+    /**
+     * @var CustomerRepositoryInterface
+     */
+    private $repository;
 
-    public function __construct(EntityManager $manager, Template\TemplateRendererInterface $template = null)
+    /**
+     * TestPageAction constructor.
+     * @param CustomerRepositoryInterface $repository
+     * @param Template\TemplateRendererInterface|null $template
+     */
+    public function __construct(CustomerRepositoryInterface $repository, Template\TemplateRendererInterface $template = null)
     {
-        $this->manager = $manager;
         $this->template = $template;
+        $this->repository = $repository;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        // Categories
+        $customer = new Customer();
+        $customer->setName('Customer Name')
+            ->setEmail('customer@email.com');
+
+        $this->repository->create($customer);
+
+        /*// Categories
         $category = new Category();
         $category->setName('My category');
 
@@ -68,6 +79,7 @@ class TestPageAction
         // Select all clients
         $clients = $this->manager->getRepository(Client::class)->findAll();
 
-        return new HtmlResponse($this->template->render('app::test-page', ['data' => 'Minha primeira aplicação!', 'categories' => $categories, 'clients' => $clients]));
+        return new HtmlResponse($this->template->render('app::test-page', ['data' => 'Minha primeira aplicação!', 'categories' => $categories, 'clients' => $clients]));*/
+        return new HtmlResponse($this->template->render('app::test-page', ['data' => 'Minha primeira aplicação!', 'categories' => [], 'clients' => []]));
     }
 }

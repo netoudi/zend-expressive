@@ -26,8 +26,8 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'name' => 'teste',
-            'path' => '/teste',
+            'name' => 'test',
+            'path' => '/test',
             'middleware' => CodeEmailMKT\Application\Action\TestPageAction::class,
             'allowed_methods' => ['GET'],
         ],
