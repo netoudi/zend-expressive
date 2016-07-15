@@ -12,8 +12,8 @@
                     <h3 class="box-title">All Customers</h3>
                     <div class="pull-right">
                         <a href="{{ url('admin.customers.create') }}" class="btn btn-primary btn-xs">
-                           <i class="fa fa-plus-circle"></i>
-                           New Customer
+                            <i class="fa fa-plus-circle"></i>
+                            New Customer
                         </a>
                     </div>
                 </div>
@@ -33,7 +33,9 @@
                                 <td>{{ customer.id }}</td>
                                 <td>{{ customer.name }}</td>
                                 <td>{{ customer.email }}</td>
-                                <td></td>
+                                <td>
+                                    <a href="{{ url('admin.customers.update', {'id': customer.id}) }}" class="btn btn-primary btn-xs">Edit</a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

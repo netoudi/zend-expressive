@@ -13,6 +13,7 @@ return [
             CodeEmailMKT\Application\Action\TestPageAction::class => CodeEmailMKT\Application\Action\TestPageFactory::class,
             Customer\CustomerListPageAction::class => Customer\Factory\CustomerListPageFactory::class,
             Customer\CustomerCreatePageAction::class => Customer\Factory\CustomerCreatePageFactory::class,
+            Customer\CustomerUpdatePageAction::class => Customer\Factory\CustomerUpdatePageFactory::class,
         ],
     ],
 
@@ -46,6 +47,17 @@ return [
             'path' => '/admin/customers/create',
             'middleware' => Customer\CustomerCreatePageAction::class,
             'allowed_methods' => ['GET', 'POST'],
+        ],
+        [
+            'name' => 'admin.customers.update',
+            'path' => '/admin/customers/update/{id}',
+            'middleware' => Customer\CustomerUpdatePageAction::class,
+            'allowed_methods' => ['GET', 'POST'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+',
+                ],
+            ],
         ],
     ],
 ];
