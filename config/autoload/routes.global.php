@@ -14,6 +14,7 @@ return [
             Customer\CustomerListPageAction::class => Customer\Factory\CustomerListPageFactory::class,
             Customer\CustomerCreatePageAction::class => Customer\Factory\CustomerCreatePageFactory::class,
             Customer\CustomerUpdatePageAction::class => Customer\Factory\CustomerUpdatePageFactory::class,
+            Customer\CustomerDeletePageAction::class => Customer\Factory\CustomerDeletePageFactory::class,
         ],
     ],
 
@@ -52,6 +53,17 @@ return [
             'name' => 'admin.customers.update',
             'path' => '/admin/customers/update/{id}',
             'middleware' => Customer\CustomerUpdatePageAction::class,
+            'allowed_methods' => ['GET', 'POST'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+',
+                ],
+            ],
+        ],
+        [
+            'name' => 'admin.customers.delete',
+            'path' => '/admin/customers/delete/{id}',
+            'middleware' => Customer\CustomerDeletePageAction::class,
             'allowed_methods' => ['GET', 'POST'],
             'options' => [
                 'tokens' => [
