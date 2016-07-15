@@ -216,7 +216,7 @@
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
+                    <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
@@ -261,6 +261,12 @@
 
         <!-- Main content -->
         <section class="content">
+            {% if message is defined and message is not null %}
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <p><i class="icon fa fa-check"> {{ message }}</i></p>
+                </div>
+            {% endif %}
             {% block content %}{% endblock %}
         </section>
         <!-- /.content -->

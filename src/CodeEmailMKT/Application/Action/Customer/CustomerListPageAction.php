@@ -39,9 +39,11 @@ class CustomerListPageAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         $customers = $this->repository->findAll();
+        $flash = $request->getAttribute('flash');
 
-        echo $request->getAttribute('flash')->getMessage('success');
-
-        return new HtmlResponse($this->template->render('app::customer/list', ['customers' => $customers]));
+        return new HtmlResponse($this->template->render('app::customer/list', [
+            'customers' => $customers,
+            'message' => $flash->getMessage('success'),
+        ]));
     }
 }

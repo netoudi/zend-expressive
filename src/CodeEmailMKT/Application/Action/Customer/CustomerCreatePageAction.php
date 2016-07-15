@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Diactoros\Response\RedirectResponse;
+use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use Zend\Mvc\Controller\Plugin\Redirect;
 
@@ -21,16 +22,25 @@ class CustomerCreatePageAction
      * @var Template\TemplateRendererInterface
      */
     private $template;
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
     /**
      * CustomerCreatePageAction constructor.
      * @param CustomerRepositoryInterface $repository
      * @param Template\TemplateRendererInterface|null $template
+     * @param RouterInterface $router
      */
-    public function __construct(CustomerRepositoryInterface $repository, Template\TemplateRendererInterface $template = null)
-    {
+    public function __construct(
+        CustomerRepositoryInterface $repository,
+        Template\TemplateRendererInterface $template,
+        RouterInterface $router
+    ) {
         $this->repository = $repository;
         $this->template = $template;
+        $this->router = $router;
     }
 
     /**
@@ -52,7 +62,7 @@ class CustomerCreatePageAction
             $this->repository->create($entity);
             $flash->setMessage('success', 'Customer successfully registered.');
 
-            return new RedirectResponse('/admin/customers');
+            return new RedirectResponse($this->router->generateUri('admin.customers.list'));
         }
 
         return new HtmlResponse($this->template->render('app::customer/create'));
