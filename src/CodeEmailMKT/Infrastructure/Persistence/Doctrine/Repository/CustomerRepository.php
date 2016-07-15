@@ -33,7 +33,7 @@ class CustomerRepository extends EntityRepository implements CustomerRepositoryI
 
     public function find($id)
     {
-        // TODO: Implement remove() method.
+        return parent::find($id);
     }
 
     public function findAll()
