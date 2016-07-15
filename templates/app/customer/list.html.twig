@@ -1,0 +1,13 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block title %}Customers{% endblock %}
+
+{% block content %}
+
+    <h1>All Customers</h1>
+
+    {% for customer in customers %}
+        {{ customer.id }} - {{ customer.name }}<br>
+    {% endfor %}
+
+{% endblock %}
