@@ -1,5 +1,6 @@
 <?php
 
+use CodeEmailMKT\Application\Middleware;
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
 
@@ -8,7 +9,8 @@ return [
         'factories' => [
             Helper\ServerUrlMiddleware::class => Helper\ServerUrlMiddlewareFactory::class,
             Helper\UrlHelperMiddleware::class => Helper\UrlHelperMiddlewareFactory::class,
-            CodeEmailMKT\Application\Middleware\BootstrapMiddleware::class => CodeEmailMKT\Application\Middleware\BootstrapMiddlewareFactory::class
+            Middleware\BootstrapMiddleware::class => Middleware\BootstrapMiddlewareFactory::class,
+            Middleware\TwigMiddleware::class => Middleware\TwigMiddlewareFactory::class,
         ],
     ],
     // This can be used to seed pre- and/or post-routing middleware
@@ -42,7 +44,8 @@ return [
                 // - pre-conditions
                 // - modifications to outgoing responses
                 Helper\ServerUrlMiddleware::class,
-                CodeEmailMKT\Application\Middleware\BootstrapMiddleware::class,
+                Middleware\BootstrapMiddleware::class,
+                Middleware\TwigMiddleware::class,
             ],
             'priority' => 10000,
         ],

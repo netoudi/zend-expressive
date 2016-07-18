@@ -41,5 +41,7 @@ class TwigMiddleware
 
             return new \Twig_SimpleFunction(null, $callable, $options);
         });
+
+        return $next($request, $response);
     }
 }

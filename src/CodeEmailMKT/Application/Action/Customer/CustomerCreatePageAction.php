@@ -11,8 +11,6 @@ use Zend\Diactoros\Response\RedirectResponse;
 use Zend\Expressive\Router\RouterInterface;
 use Zend\Expressive\Template;
 use Zend\Form\Form;
-use Zend\Mvc\Controller\Plugin\Redirect;
-use Zend\View\HelperPluginManager;
 
 class CustomerCreatePageAction
 {
@@ -28,28 +26,21 @@ class CustomerCreatePageAction
      * @var RouterInterface
      */
     private $router;
-    /**
-     * @var HelperPluginManager
-     */
-    private $helperManager;
 
     /**
      * CustomerCreatePageAction constructor.
      * @param CustomerRepositoryInterface $repository
      * @param Template\TemplateRendererInterface|null $template
      * @param RouterInterface $router
-     * @param HelperPluginManager $helperManager
      */
     public function __construct(
         CustomerRepositoryInterface $repository,
         Template\TemplateRendererInterface $template,
-        RouterInterface $router,
-        HelperPluginManager $helperManager
+        RouterInterface $router
     ) {
         $this->repository = $repository;
         $this->template = $template;
         $this->router = $router;
-        $this->helperManager = $helperManager;
     }
 
     /**
@@ -93,8 +84,6 @@ class CustomerCreatePageAction
             ]
         ]);
 
-        $formHelper = $this->helperManager->get('form');
-
         $flash = $request->getAttribute('flash');
 
         if ($request->getMethod() == 'POST') {
@@ -111,7 +100,6 @@ class CustomerCreatePageAction
 
         return new HtmlResponse($this->template->render('app::customer/create', [
             'myForm' => $myForm,
-            'formHelper' => $formHelper,
         ]));
     }
 }
