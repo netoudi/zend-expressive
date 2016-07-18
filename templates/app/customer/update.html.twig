@@ -9,6 +9,7 @@
         <div class="col-sm-12">
             <div class="box">
                 <form action="{{ url('admin.customers.update', {'id': customer.id}) }}" method="post" class="form-horizontal">
+                    <input type="hidden" name="_method" value="PUT">
                     <div class="box-header with-border">
                         <h3 class="box-title">Update Customer</h3>
                     </div>

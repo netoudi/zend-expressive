@@ -9,6 +9,7 @@
         <div class="col-sm-12">
             <div class="box">
                 <form action="{{ url('admin.customers.delete', {'id': customer.id}) }}" method="post" class="form-horizontal">
+                    <input type="hidden" name="_method" value="DELETE">
                     <div class="box-header with-border">
                         <h3 class="box-title">Delete Customer</h3>
                     </div>

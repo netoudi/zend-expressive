@@ -53,7 +53,7 @@ class CustomerDeletePageAction
         $idCustomer = (int)$request->getAttribute('id');
         $entity = $this->repository->find($idCustomer);
 
-        if ($request->getMethod() == 'POST') {
+        if ($request->getMethod() == 'DELETE') {
             $this->repository->remove($entity);
             $flash->setMessage('success', 'Customer successfully deleted.');
 
