@@ -2,14 +2,19 @@
 
 namespace CodeEmailMKT\Application\Form;
 
-use Zend\Form\Form;
+use CodeEmailMKT\Domain\Entity\Customer;
 use Zend\Form\Element;
+use Zend\Form\Form;
+use Zend\Hydrator\ClassMethods;
 
 class CustomerForm extends Form
 {
     public function __construct($name = 'customer', array $options = [])
     {
         parent::__construct($name, $options);
+
+        $this->setHydrator(new ClassMethods());
+        $this->setObject(new Customer());
 
         $this->add([
             'name' => 'id',

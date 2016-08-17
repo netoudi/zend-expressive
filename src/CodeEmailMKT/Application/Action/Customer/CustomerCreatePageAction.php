@@ -60,11 +60,7 @@ class CustomerCreatePageAction
             $form->setData($dataRaw);
 
             if ($form->isValid()) {
-                $data = $form->getData();
-                $entity = new Customer();
-                $entity
-                    ->setName($data['name'])
-                    ->setEmail($data['email']);
+                $entity = $form->getData();
                 $this->repository->create($entity);
                 $flash->setMessage('success', 'Customer successfully registered.');
 
