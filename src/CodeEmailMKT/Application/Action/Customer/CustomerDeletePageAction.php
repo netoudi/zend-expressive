@@ -26,21 +26,28 @@ class CustomerDeletePageAction
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var CustomerForm
+     */
+    private $form;
 
     /**
      * CustomerDeletePageAction constructor.
      * @param CustomerRepositoryInterface $repository
      * @param Template\TemplateRendererInterface|null $template
      * @param RouterInterface $router
+     * @param CustomerForm $form
      */
     public function __construct(
         CustomerRepositoryInterface $repository,
         Template\TemplateRendererInterface $template,
-        RouterInterface $router
+        RouterInterface $router,
+        CustomerForm $form
     ) {
         $this->repository = $repository;
         $this->template = $template;
         $this->router = $router;
+        $this->form = $form;
     }
 
     /**
@@ -54,9 +61,8 @@ class CustomerDeletePageAction
         $flash = $request->getAttribute('flash');
         $idCustomer = (int)$request->getAttribute('id');
         $entity = $this->repository->find($idCustomer);
-        $form = new CustomerForm();
-        $form->add(new HttpMethodElement('DELETE'));
-        $form->bind($entity);
+        $this->form->add(new HttpMethodElement('DELETE'));
+        $this->form->bind($entity);
 
         if ($request->getMethod() == 'DELETE') {
             $this->repository->remove($entity);
@@ -66,7 +72,7 @@ class CustomerDeletePageAction
         }
 
         return new HtmlResponse($this->template->render('app::customer/delete', [
-            'form' => $form,
+            'form' => $this->form,
         ]));
     }
 }

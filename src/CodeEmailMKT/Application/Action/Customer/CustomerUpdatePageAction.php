@@ -26,21 +26,28 @@ class CustomerUpdatePageAction
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var CustomerForm
+     */
+    private $form;
 
     /**
      * CustomerUpdatePageAction constructor.
      * @param CustomerRepositoryInterface $repository
      * @param Template\TemplateRendererInterface|null $template
      * @param RouterInterface $router
+     * @param CustomerForm $form
      */
     public function __construct(
         CustomerRepositoryInterface $repository,
         Template\TemplateRendererInterface $template,
-        RouterInterface $router
+        RouterInterface $router,
+        CustomerForm $form
     ) {
         $this->repository = $repository;
         $this->template = $template;
         $this->router = $router;
+        $this->form = $form;
     }
 
     /**
@@ -54,16 +61,15 @@ class CustomerUpdatePageAction
         $flash = $request->getAttribute('flash');
         $idCustomer = (int)$request->getAttribute('id');
         $entity = $this->repository->find($idCustomer);
-        $form = new CustomerForm();
-        $form->add(new HttpMethodElement('PUT'));
-        $form->bind($entity);
+        $this->form->add(new HttpMethodElement('PUT'));
+        $this->form->bind($entity);
 
         if ($request->getMethod() == 'PUT') {
             $dataRaw = $request->getParsedBody();
-            $form->setData($dataRaw);
+            $this->form->setData($dataRaw);
 
-            if ($form->isValid()) {
-                $entity = $form->getData();
+            if ($this->form->isValid()) {
+                $entity = $this->form->getData();
                 $this->repository->update($entity);
                 $flash->setMessage('success', 'Customer successfully updated.');
 
@@ -72,7 +78,7 @@ class CustomerUpdatePageAction
         }
 
         return new HtmlResponse($this->template->render('app::customer/update', [
-            'form' => $form,
+            'form' => $this->form,
         ]));
     }
 }

@@ -26,21 +26,28 @@ class CustomerCreatePageAction
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var CustomerForm
+     */
+    private $form;
 
     /**
      * CustomerCreatePageAction constructor.
      * @param CustomerRepositoryInterface $repository
      * @param Template\TemplateRendererInterface|null $template
      * @param RouterInterface $router
+     * @param CustomerForm $form
      */
     public function __construct(
         CustomerRepositoryInterface $repository,
         Template\TemplateRendererInterface $template,
-        RouterInterface $router
+        RouterInterface $router,
+        CustomerForm $form
     ) {
         $this->repository = $repository;
         $this->template = $template;
         $this->router = $router;
+        $this->form = $form;
     }
 
     /**
@@ -51,16 +58,14 @@ class CustomerCreatePageAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        $form = new CustomerForm();
-
         $flash = $request->getAttribute('flash');
 
         if ($request->getMethod() == 'POST') {
             $dataRaw = $request->getParsedBody();
-            $form->setData($dataRaw);
+            $this->form->setData($dataRaw);
 
-            if ($form->isValid()) {
-                $entity = $form->getData();
+            if ($this->form->isValid()) {
+                $entity = $this->form->getData();
                 $this->repository->create($entity);
                 $flash->setMessage('success', 'Customer successfully registered.');
 
@@ -69,7 +74,7 @@ class CustomerCreatePageAction
         }
 
         return new HtmlResponse($this->template->render('app::customer/create', [
-            'form' => $form,
+            'form' => $this->form,
         ]));
     }
 }
