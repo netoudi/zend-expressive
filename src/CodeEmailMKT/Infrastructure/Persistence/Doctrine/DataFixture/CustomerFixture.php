@@ -5,6 +5,7 @@ namespace CodeEmailMKT\Infrastructure\Persistence\Doctrine\DataFixture;
 use CodeEmailMKT\Domain\Entity\Customer;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Factory as Faker;
 
 class CustomerFixture implements FixtureInterface
 {
@@ -15,11 +16,16 @@ class CustomerFixture implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $customer = new Customer();
-        $customer->setName('Fulano da Silva')
-            ->setEmail('fulano.silva@domain.com');
+        $faker = Faker::create();
 
-        $manager->persist($customer);
+        foreach (range(1, 100) as $value) {
+            $customer = new Customer();
+            $customer
+                ->setName($faker->firstName . ' ' . $faker->lastName)
+                ->setEmail($faker->email);
+            $manager->persist($customer);
+        }
+
         $manager->flush();
     }
 }
