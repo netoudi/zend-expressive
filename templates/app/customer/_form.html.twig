@@ -3,6 +3,7 @@
 {% do name.setAttribute('class', 'form-control') %}
 
 {% set email = form.get('email') %}
+{% set emailErrors = formElementErrors(email, {'class': 'help-block'}) %}
 {% do email.setOptions({'label_attributes': {'class': 'col-sm-2 control-label'}}) %}
 {% do email.setAttribute('class', 'form-control') %}
 
@@ -41,11 +42,11 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group {{ emailErrors ? 'has-error' }}">
             {{ formLabel(email) }}
             <div class="col-sm-8">
                 {{ formElement(email) }}
-                {{ formElementErrors(email, {'class': 'help-block'}) }}
+                {{ emailErrors | raw }}
             </div>
         </div>
     </div><!-- /.box-body -->
