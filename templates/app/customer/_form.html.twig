@@ -1,0 +1,65 @@
+{% set name = form.get('name') %}
+{% do name.setOptions({'label_attributes': {'class': 'col-sm-2 control-label'}}) %}
+{% do name.setAttribute('class', 'form-control') %}
+
+{% set email = form.get('email') %}
+{% do email.setOptions({'label_attributes': {'class': 'col-sm-2 control-label'}}) %}
+{% do email.setAttribute('class', 'form-control') %}
+
+{% set submit = form.get('submit') %}
+
+{% if method != 'DELETE' %}
+    {% do submit.setAttribute('class', 'btn btn-primary') %}
+{% else %}
+    {% do submit.setAttribute('class', 'btn btn-danger').setLabel('Delete') %}
+{% endif %}
+
+{% do form.setAttribute('class', 'form-horizontal') %}
+{% do form.setAttribute('action', action) %}
+{% do form.prepare() %}
+
+
+{{ form().openTag(form) | raw }}
+
+{% if method == 'PUT' or method == 'DELETE' %}
+    {{ formHidden(form.get('_method')) }}
+{% endif %}
+
+<div class="box-header with-border">
+    <h3 class="box-title">{{ title }}</h3>
+</div>
+
+{% if method == 'DELETE' %}
+<fieldset disabled>
+    {% endif %}
+
+    <div class="box-body">
+        <div class="form-group">
+            {{ formLabel(name) }}
+            <div class="col-sm-8">
+                {{ formInput(name) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            {{ formLabel(email) }}
+            <div class="col-sm-8">
+                {{ formInput(email) }}
+            </div>
+        </div>
+    </div><!-- /.box-body -->
+
+    {% if method == 'DELETE' %}
+</fieldset>
+{% endif %}
+
+<div class="box-footer">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            {{ formButton(submit) }}
+            <a href="{{ url('admin.customers.list') }}" class="btn btn-default">Cancel</a>
+        </div>
+    </div>
+</div>
+
+{{ form().closeTag() | raw }}

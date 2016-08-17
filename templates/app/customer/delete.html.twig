@@ -4,55 +4,12 @@
 
 {% block page_header %}Customers{% endblock %}
 
-{% set name = form.get('name') %}
-{% do name.setOptions({'label_attributes': {'class': 'col-sm-2 control-label'}}) %}
-{% do name.setAttribute('class', 'form-control') %}
-
-{% set email = form.get('email') %}
-{% do email.setOptions({'label_attributes': {'class': 'col-sm-2 control-label'}}) %}
-{% do email.setAttribute('class', 'form-control') %}
-
-{% set submit = form.get('submit') %}
-{% do submit.setAttribute('class', 'btn btn-danger').setLabel('Delete') %}
-
-{% do form.setAttribute('class', 'form-horizontal') %}
-{% do form.setAttribute('action', url('admin.customers.delete', {'id': form.getObject().id})) %}
-{% do form.prepare() %}
-
 {% block content %}
     <div class="row">
         <div class="col-sm-12">
             <div class="box">
-                {{ form().openTag(form) | raw }}
-                {{ formHidden(form.get('_method')) }}
-                <div class="box-header with-border">
-                    <h3 class="box-title">Delete Customer</h3>
-                </div>
-                <div class="box-body">
-                    <fieldset disabled>
-                        <div class="form-group">
-                            {{ formLabel(name) }}
-                            <div class="col-sm-8">
-                                {{ formInput(name) }}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            {{ formLabel(email) }}
-                            <div class="col-sm-8">
-                                {{ formInput(email) }}
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="box-footer">
-                    <div class="row">
-                        <div class="col-sm-8 col-sm-offset-2">
-                            {{ formButton(submit) }}
-                            <a href="{{ url('admin.customers.list') }}" class="btn btn-default">Cancel</a>
-                        </div>
-                    </div>
-                </div>
-                {{ form().closeTag() | raw }}
+                {% set options = {title: 'Delete Customer', method: 'DELETE', action: url('admin.customers.delete', {'id': form.getObject().id})} %}
+                {% include '@app/customer/_form.html.twig' with options %}
             </div>
         </div>
     </div>
