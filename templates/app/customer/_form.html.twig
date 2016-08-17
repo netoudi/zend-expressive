@@ -37,14 +37,15 @@
         <div class="form-group">
             {{ formLabel(name) }}
             <div class="col-sm-8">
-                {{ formInput(name) }}
+                {{ formElement(name) }}
             </div>
         </div>
 
         <div class="form-group">
             {{ formLabel(email) }}
             <div class="col-sm-8">
-                {{ formInput(email) }}
+                {{ formElement(email) }}
+                {{ formElementErrors(email, {'class': 'help-block'}) }}
             </div>
         </div>
     </div><!-- /.box-body -->

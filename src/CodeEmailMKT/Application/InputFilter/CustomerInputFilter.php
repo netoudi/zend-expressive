@@ -4,10 +4,11 @@ namespace CodeEmailMKT\Application\InputFilter;
 
 use Zend\Filter\StringTrim;
 use Zend\Filter\StripTags;
+use Zend\InputFilter\InputFilter;
 use Zend\Validator\EmailAddress;
 use Zend\Validator\NotEmpty;
 
-class CustomerInputFilter
+class CustomerInputFilter extends InputFilter
 {
     /**
      * CustomerInputFilter constructor.

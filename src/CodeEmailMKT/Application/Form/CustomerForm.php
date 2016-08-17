@@ -2,6 +2,7 @@
 
 namespace CodeEmailMKT\Application\Form;
 
+use CodeEmailMKT\Application\InputFilter\CustomerInputFilter;
 use CodeEmailMKT\Domain\Entity\Customer;
 use Zend\Form\Element;
 use Zend\Form\Form;
@@ -15,6 +16,7 @@ class CustomerForm extends Form
 
         $this->setHydrator(new ClassMethods());
         $this->setObject(new Customer());
+        $this->setInputFilter(new CustomerInputFilter());
 
         $this->add([
             'name' => 'id',
