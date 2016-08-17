@@ -56,15 +56,20 @@ class CustomerCreatePageAction
         $flash = $request->getAttribute('flash');
 
         if ($request->getMethod() == 'POST') {
-            $data = $request->getParsedBody();
-            $entity = new Customer();
-            $entity
-                ->setName($data['name'])
-                ->setEmail($data['email']);
-            $this->repository->create($entity);
-            $flash->setMessage('success', 'Customer successfully registered.');
+            $dataRaw = $request->getParsedBody();
+            $form->setData($dataRaw);
 
-            return new RedirectResponse($this->router->generateUri('admin.customers.list'));
+            if ($form->isValid()) {
+                $data = $form->getData();
+                $entity = new Customer();
+                $entity
+                    ->setName($data['name'])
+                    ->setEmail($data['email']);
+                $this->repository->create($entity);
+                $flash->setMessage('success', 'Customer successfully registered.');
+
+                return new RedirectResponse($this->router->generateUri('admin.customers.list'));
+            }
         }
 
         return new HtmlResponse($this->template->render('app::customer/create', [
