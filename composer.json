@@ -32,7 +32,8 @@
         "doctrine/doctrine-orm-module": "0.11.0",
         "aura/session": "^2.0",
         "damess/expressive-session-middleware": "^1.0",
-        "codeedu/zendexpr-doctrine-fixture": "0.0.1"
+        "codeedu/zendexpr-doctrine-fixture": "0.0.1",
+        "fzaninotto/faker": "^1.6"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
