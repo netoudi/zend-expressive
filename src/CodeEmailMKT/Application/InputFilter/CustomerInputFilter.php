@@ -31,8 +31,8 @@ class CustomerInputFilter extends InputFilter
                 ['name' => StringTrim::class],
             ],
             'validators' => [
-                ['name' => NotEmpty::class],
-                ['name' => EmailAddress::class],
+                ['name' => NotEmpty::class, 'break_chain_on_failure' => true],
+                ['name' => EmailAddress::class, 'break_chain_on_failure' => true],
             ],
         ]);
     }
